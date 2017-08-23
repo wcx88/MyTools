@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="GB2312"?>
+<object name="tFingerDefine" type="0" object-id="764abb4c:128664f67da:-8000" version="V1.1" modify-date="2010.05.05 10:35:20" create-date="2010.05.05 10:33:19" creator="xpk" modifier="xpk" flag="0" package="指纹仪">
+  <describe>指纹手指标识</describe>
+  <comment />
+  <datasource-name />
+  <parent />
+  <attribute>268435712</attribute>
+  <templet />
+  <columns>
+    <column>
+      <name>ID</name>
+      <describe>ID</describe>
+      <comment />
+      <type>1</type>
+      <length>16</length>
+      <scale>0</scale>
+      <control>0</control>
+      <primary-property>2</primary-property>
+      <option />
+      <meta-column />
+      <ref-object />
+      <default />
+      <real-type>0</real-type>
+      <attribute>0</attribute>
+      <order-direction>0</order-direction>
+      <expression />
+      <invisible-expression />
+      <disable-expression />
+      <category />
+      <fire-event>0</fire-event>
+      <check-type>0</check-type>
+      <validation />
+      <constraint />
+      <scope-permissions />
+    </column>
+    <column>
+      <name>SZ</name>
+      <describe>手指</describe>
+      <comment />
+      <type>0</type>
+      <length>30</length>
+      <scale>0</scale>
+      <control>1</control>
+      <primary-property>0</primary-property>
+      <option />
+      <meta-column />
+      <ref-object />
+      <default />
+      <real-type>0</real-type>
+      <attribute>2</attribute>
+      <order-direction>0</order-direction>
+      <expression />
+      <invisible-expression />
+      <disable-expression />
+      <category />
+      <fire-event>0</fire-event>
+      <check-type>0</check-type>
+      <validation />
+      <constraint />
+      <scope-permissions />
+    </column>
+  </columns>
+  <display-options>
+    <commands>
+      <command type="2">
+        <describe>新增</describe>
+        <define>
+          <item>tFingerDefine</item>
+          <item>Add</item>
+        </define>
+        <produce-mark />
+        <is-default>0</is-default>
+        <attribute>0</attribute>
+      </command>
+      <command type="2">
+        <describe>删除</describe>
+        <define>
+          <item>tFingerDefine</item>
+          <item>Delete</item>
+        </define>
+        <produce-mark />
+        <is-default>0</is-default>
+        <attribute>0</attribute>
+      </command>
+    </commands>
+    <relations />
+  </display-options>
+  <subdivisions />
+  <methods />
+  <properties />
+</object>
+

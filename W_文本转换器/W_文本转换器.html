@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<!--<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />-->
+<link rel="stylesheet" type="text/css" href="style/css.css?ver=1.1"/>
+<title>  文本转换器  </title>
+<meta content="text/html; charset=gbk" http-equiv="Content-Type"/>
+</head>
+<body>
+<form>
+    <table class="formtable headerNav" align="center"  cellSpacing="0" cellPadding="1" border="1" >
+        <tbody>
+        <tr>
+            <th width="50%" id="id_th_left">
+                <a type="button" onclick="operate('id_textarea_left', this.innerHTML);">paste</a>
+                <a type="button" onclick="operate('id_textarea_left', this.innerHTML);">cut</a>
+                <a type="button" onclick="operate('id_textarea_left', this.innerHTML);">copy</a>
+                <a type="button" onclick="operate('id_textarea_left', this.innerHTML);">clear</a>
+                <a type="button" onclick="operate('id_textarea_left', this.innerHTML);">quick</a>
+            </th>
+            <th >
+                <a onclick="operate('id_textarea_left', 'clear');operate('id_textarea_right', 'clear');" title="清除两侧的脚本">clear</a>
+            </th>
+            <th  width="50%" id="id_th_right" >
+                <a type="button" onclick="operate('id_textarea_right', this.innerHTML);">quick</a>
+                <a onclick="operate('id_textarea_right', this.innerHTML);">clear</a>
+                <a onclick="operate('id_textarea_right', this.innerHTML);">copy</a>
+                <a onclick="operate('id_textarea_right', this.innerHTML);">cut</a>
+                <a onclick="operate('id_textarea_right', this.innerHTML);">paste</a>&nbsp;
+                <span>
+                    <a href="#" onclick="document.getElementById('id_popuDiv').style.display='block';">整型设定</a>
+                    <a title="来自http://tool.onexin.net/js-beautify/"
+                           id="beautify" onclick="return do_js_beautify();" action="beautifyJS">JS整型</a>
+                </span>
+                <div id="id_popuDiv" class="popuDiv"><table border=0 ><tr><td style="border:0;">
+                    <select size="1" title="缩进" id=tabsize name=tabsize>
+                        <option value=1>一Tab</option>
+                        <option value=2>2空格</option>
+                        <option value=3>3空格</option>
+                        <option selected value=4>4空格</option>
+                        <option value=8>8空格</option>
+                    </select></td><td class="CloseSign" style="border:0;text-align:right;padding:0 0 0 18px;">
+                    <span onclick="document.getElementById('id_popuDiv').style.display='none';">x</span></td></tr></table>
+                    <br>
+                    <input id=preserve-newlines CHECKED type=checkbox><label for=preserve-newlines>保留空格</label><br>
+                    <input id=detect-packers CHECKED type=checkbox><label for=detect-packers>检测封包</label><br>
+                    <input id=keep-array-indentation type=checkbox><label for=keep-array-indentation>保持数组缩格</label>
+                </div>
+            </th>
+        </tr>
+        <tr>
+            <th rowspan="3" id="id_td_left">
+                <textarea id="id_textarea_left" onscroll="synchronizeScroll(this);"></textarea>
+            </th>
+
+            <th valign="top">
+                <input style="font-size:10px;" type="button" onclick="showCtrl(this);" value="<"
+                       id="id_btn_left" title="隐藏[livebos脚本]" showTitle="[livebos脚本]"/>
+                <input style="font-size:10px;" type="button" onclick="showCtrl(this);" value=">"
+                       id="id_btn_right" title="隐藏[javascritp脚本]" showTitle="[javascritp脚本]"/><br><br>
+                <input type="button" value="swap" onclick="swapText();" title="交换两边内容"/><br><br>
+                <div class="txtType">&nbsp;变换类型<br>
+                <input type="radio" value="auto" id="id_auto" name="txtType" title="自动判断" checked><label for="id_auto" title="自动判断" >auto</label><br>
+                <input type="radio" value="js" id="id_radio_js"  name="txtType" title="javascritp脚本"><label for="id_radio_js"  title="livebos,javascritp脚本">js</label><br>
+                <input type="radio" value="sql" id="id_sql" name="txtType" title="sql脚本"><label for="id_sql" title="sql脚本">sql</label><br>
+                <input type="radio" value="unicode" id="id_unicode" name="txtType" title="unicode转换(\uXXXX)"><label for="id_unicode" title="unicode转换(\uXXXX)">code</label><br>
+                <input type="radio" value="url" id="id_url" name="txtType" title="url转换(%FF)"><label for="id_url" title="url转换(%FF)">url</label><br>
+                <input type="radio" value="url" id="id_html" name="txtType" title="html转义字符"><label for="id_html" title="html转义字符">html</label><br>
+                <input type="radio" value="base64" id="id_base64" name="txtType" title="base64转换"><label for="id_base64" title="base64转换">base64</label><br>
+                <input type="radio" value="md5" id="id_md5" name="txtType" title="md5转换"><label for="id_md5" title="md5转换">md5</label><br><br>
+                </div>
+                <input id="id_chk_enforce" title="强制右边为解包结果" type=checkbox><label title="强制右边为解包结果"  for="id_chk_enforce">强制</label>
+                 <br><br>
+                <input style="height:40px;font-size:14px;" type="button" value="  >> " id="btnToRight" title="livebos脚本 -> javascritp脚本"/><br><br>
+                <input style="height:40px;font-size:14px;" type="button" value=" <<  " id="btnToLeft" title="livebos脚本 <- javascritp脚本"/><br><br>
+            </th>
+
+            <th rowspan="3" id="id_td_right">
+                <textarea id="id_textarea_right" onscroll="synchronizeScroll(this);" ></textarea>
+            </th>
+        </tr>
+        </tbody>
+    </table>
+ </form>
+</body>
+<script type=text/javascript src="script/sanitytest.js"></script>
+<script type=text/javascript src="script/beautify.js"></script>
+<script type=text/javascript src="script/beautify-tests.js"></script>
+<script type=text/javascript src="script/javascriptobfuscator_unpacker.js"></script>
+<script type=text/javascript src="script/HTML-Beautify.js"></script>
+<script type=text/javascript src="script/ga.js"></script>
+<script type=text/javascript src="base64.js?ver=2.0.3"></script>
+<script type=text/javascript src="md5.js?ver=2.0.3"></script>
+<script type=text/javascript src="converter.js?ver=2.0.6"></script>
+</html>

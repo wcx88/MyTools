@@ -1,0 +1,4 @@
+('E:\\360\xd4\xc6\xc5\xcc\xd7\xd4\xb6\xaf\xcd\xac\xb2\xbd\xc4\xbf\xc2\xbc\\Q_\xc6\xe4\xcb\xfc\\MyTools\\CIF2\xd3\xb0\xcf\xf1\xce\xc4\xbc\xfe\xd7\xaa\xbb\xbb\xc6\xf7\\src\\distCutImgFileHead',
+ False,
+ False,
+ [('CutImgFileHead.exe', 'E:\\360\xd4\xc6\xc5\xcc\xd7\xd4\xb6\xaf\xcd\xac\xb2\xbd\xc4\xbf\xc2\xbc\\Q_\xc6\xe4\xcb\xfc\\MyTools\\CIF2\xd3\xb0\xcf\xf1\xce\xc4\xbc\xfe\xd7\xaa\xbb\xbb\xc6\xf7\\src\\buildCutImgFileHead/CutImgFileHead.exe', 'EXECUTABLE'), ('python25.dll', 'C:\\Windows\\system32\\python25.dll', 'BINARY'), ('MSVCR71.dll', 'C:\\Windows\\system32\\MSVCR71.dll', 'BINARY'), ('unicodedata', 'C:\\Python25\\DLLs\\unicodedata.pyd', 'EXTENSION'), ('bz2', 'C:\\Python25\\DLLs\\bz2.pyd', 'EXTENSION')])

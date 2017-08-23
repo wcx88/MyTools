@@ -1,0 +1,1214 @@
+<?xml version="1.0" encoding="GB2312"?>
+<object name="tUserFingerPrint" type="0" object-id="4055207:1283ef300f4:-8000" version="V1.0.0.4" modify-date="2010.10.12 14:24:03" create-date="2010.04.27 19:07:12" creator="林金强" modifier="林兰芝" flag="0" package="指纹仪">
+  <describe>用户指纹数据</describe>
+  <comment>20101012 V1.0.0.4 指纹比对的柜员受登陆柜员的营业部限制
+20100719 V1.0.0.3 登记指纹的柜员受登陆柜员的营业部限制
+20100628 V1.0.0.2 支持登记指纹临柜审核 业务审核代码80000
+20100427 V1.0.0.1 林金强 新建</comment>
+  <datasource-name />
+  <parent />
+  <attribute>268435712</attribute>
+  <templet />
+  <columns>
+    <column>
+      <name>ID</name>
+      <describe>ID</describe>
+      <comment />
+      <type>1</type>
+      <length>16</length>
+      <scale>0</scale>
+      <control>0</control>
+      <primary-property>2</primary-property>
+      <option />
+      <meta-column />
+      <ref-object />
+      <default />
+      <real-type>0</real-type>
+      <attribute>0</attribute>
+      <order-direction>0</order-direction>
+      <expression />
+      <invisible-expression />
+      <disable-expression />
+      <category />
+      <fire-event>0</fire-event>
+      <check-type>0</check-type>
+      <validation />
+      <constraint />
+      <scope-permissions />
+    </column>
+    <column>
+      <name>USERID</name>
+      <describe>柜员</describe>
+      <comment />
+      <type>6</type>
+      <length>22</length>
+      <scale>0</scale>
+      <control>33</control>
+      <primary-property>4</primary-property>
+      <option />
+      <meta-column />
+      <ref-object>tUser</ref-object>
+      <default />
+      <real-type>0</real-type>
+      <attribute>4</attribute>
+      <order-direction>1</order-direction>
+      <expression />
+      <invisible-expression />
+      <disable-expression />
+      <category />
+      <fire-event>0</fire-event>
+      <check-type>0</check-type>
+      <validation />
+      <constraint />
+      <scope-permissions />
+    </column>
+    <column>
+      <name>FINGER</name>
+      <describe>手指标识</describe>
+      <comment />
+      <type>6</type>
+      <length>0</length>
+      <scale>0</scale>
+      <control>33</control>
+      <primary-property>0</primary-property>
+      <option />
+      <meta-column />
+      <ref-object>tFingerDefine</ref-object>
+      <default />
+      <real-type>0</real-type>
+      <attribute>8</attribute>
+      <order-direction>1</order-direction>
+      <expression />
+      <invisible-expression />
+      <disable-expression />
+      <category />
+      <fire-event>0</fire-event>
+      <check-type>0</check-type>
+      <validation />
+      <constraint type="3">
+        <SQL>["1=1 /*平台BUG，无效？tFingerDefine.ID not in( \r\nselect f.Finger from tuserfingerprint f\r\n  where f.userid={0}\r\n)*/",[{"type":"1","length":"","scale":"","expression":"USERID"}]]</SQL>
+        <refColumns>
+          <refColumn>USERID</refColumn>
+        </refColumns>
+      </constraint>
+      <scope-permissions />
+    </column>
+    <column>
+      <name>FINGERPRINT</name>
+      <describe>指纹数据</describe>
+      <comment />
+      <type>0</type>
+      <length>2048</length>
+      <scale>0</scale>
+      <control>1</control>
+      <primary-property>0</primary-property>
+      <option />
+      <meta-column />
+      <ref-object />
+      <default />
+      <real-type>0</real-type>
+      <attribute>0</attribute>
+      <order-direction>0</order-direction>
+      <expression />
+      <invisible-expression />
+      <disable-expression />
+      <category />
+      <fire-event>0</fire-event>
+      <check-type>0</check-type>
+      <validation />
+      <constraint />
+      <scope-permissions />
+    </column>
+    <column>
+      <name>CJRQ</name>
+      <describe>采集日期</describe>
+      <comment />
+      <type>13</type>
+      <length>8</length>
+      <scale>0</scale>
+      <control>3</control>
+      <primary-property>0</primary-property>
+      <option />
+      <meta-column />
+      <ref-object />
+      <default />
+      <real-type>0</real-type>
+      <attribute>0</attribute>
+      <order-direction>0</order-direction>
+      <expression />
+      <invisible-expression />
+      <disable-expression />
+      <category />
+      <fire-event>0</fire-event>
+      <check-type>0</check-type>
+      <validation />
+      <constraint />
+      <scope-permissions />
+    </column>
+    <column>
+      <name>CJGY</name>
+      <describe>采集柜员</describe>
+      <comment />
+      <type>6</type>
+      <length>0</length>
+      <scale>0</scale>
+      <control>33</control>
+      <primary-property>0</primary-property>
+      <option />
+      <meta-column />
+      <ref-object>tUser</ref-object>
+      <default />
+      <real-type>0</real-type>
+      <attribute>0</attribute>
+      <order-direction>0</order-direction>
+      <expression />
+      <invisible-expression />
+      <disable-expression />
+      <category />
+      <fire-event>0</fire-event>
+      <check-type>0</check-type>
+      <validation />
+      <constraint />
+      <scope-permissions />
+    </column>
+  </columns>
+  <display-options>
+    <commands>
+      <command type="5">
+        <describe>登记指纹</describe>
+        <define>
+          <item>tUserFingerPrint_M1</item>
+        </define>
+        <produce-mark />
+        <is-default>0</is-default>
+        <attribute>0</attribute>
+      </command>
+      <command type="5">
+        <describe>删除指纹</describe>
+        <define>
+          <item>tUserFingerPrint_M2</item>
+        </define>
+        <produce-mark />
+        <is-default>0</is-default>
+        <attribute>0</attribute>
+      </command>
+      <command type="5">
+        <describe>比对测试</describe>
+        <define>
+          <item>tUserFingerPrint_M3</item>
+        </define>
+        <produce-mark />
+        <is-default>0</is-default>
+        <attribute>0</attribute>
+      </command>
+    </commands>
+    <relations />
+  </display-options>
+  <subdivisions />
+  <methods>
+    <method name="tUserFingerPrint_M1" object-id="4055207:1283ef300f4:-7ffe" version="V1.1" modify-date="2010.04.27 19:45:13" create-date="2010.04.27 19:45:13" creator="林金强" modifier="林金强">
+      <describe>登记指纹</describe>
+      <comment />
+      <attribute>268435464</attribute>
+      <restrictions />
+      <parameters>
+        <column>
+          <name>YYB</name>
+          <describe>营业部</describe>
+          <comment />
+          <type>6</type>
+          <length>0</length>
+          <scale>0</scale>
+          <control>2</control>
+          <primary-property>4</primary-property>
+          <option />
+          <meta-column />
+          <ref-object>vYYB</ref-object>
+          <default>$Login.User.OrgID</default>
+          <real-type>0</real-type>
+          <attribute>0</attribute>
+          <order-direction>0</order-direction>
+          <expression />
+          <invisible-expression />
+          <disable-expression />
+          <category />
+          <fire-event>1</fire-event>
+          <check-type>0</check-type>
+          <validation />
+          <constraint />
+          <scope-permissions />
+        </column>
+        <column>
+          <name>USERID</name>
+          <describe>柜员</describe>
+          <comment />
+          <type>8</type>
+          <length>22</length>
+          <scale>0</scale>
+          <control>10</control>
+          <primary-property>4</primary-property>
+          <option />
+          <meta-column />
+          <ref-object>tUser</ref-object>
+          <default />
+          <real-type>6</real-type>
+          <attribute>4</attribute>
+          <order-direction>1</order-direction>
+          <expression />
+          <invisible-expression />
+          <disable-expression />
+          <category />
+          <fire-event>0</fire-event>
+          <check-type>0</check-type>
+          <validation />
+          <constraint>
+            <parameter-map type="0">
+              <ref-object>tUser</ref-object>
+              <ref-parameter>OrgID</ref-parameter>
+              <map-column>YYB</map-column>
+            </parameter-map>
+          </constraint>
+          <scope-permissions />
+        </column>
+        <column>
+          <name>FINGER</name>
+          <describe>手指标识</describe>
+          <comment />
+          <type>8</type>
+          <length>0</length>
+          <scale>0</scale>
+          <control>5</control>
+          <primary-property>0</primary-property>
+          <option />
+          <meta-column />
+          <ref-object>tFingerDefine</ref-object>
+          <default />
+          <real-type>6</real-type>
+          <attribute>8</attribute>
+          <order-direction>1</order-direction>
+          <expression />
+          <invisible-expression />
+          <disable-expression />
+          <category />
+          <fire-event>0</fire-event>
+          <check-type>0</check-type>
+          <validation />
+          <constraint type="3">
+            <SQL>["tFingerDefine.ID not in( \r\nselect f.Finger from tuserfingerprint f\r\n  where f.userid={0}\r\n)",[{"type":"1","length":"","scale":"","expression":"USERID"}]]</SQL>
+            <refColumns>
+              <refColumn>USERID</refColumn>
+            </refColumns>
+          </constraint>
+          <scope-permissions />
+        </column>
+        <column>
+          <name>FINGERPRINT</name>
+          <describe>指纹数据</describe>
+          <comment />
+          <type>8</type>
+          <length>1024</length>
+          <scale>0</scale>
+          <control>0</control>
+          <primary-property>4</primary-property>
+          <option />
+          <meta-column />
+          <ref-object />
+          <default />
+          <real-type>0</real-type>
+          <attribute>65536</attribute>
+          <order-direction>0</order-direction>
+          <expression />
+          <invisible-expression />
+          <disable-expression />
+          <category />
+          <fire-event>0</fire-event>
+          <check-type>0</check-type>
+          <validation />
+          <constraint />
+          <scope-permissions />
+        </column>
+        <column>
+          <name>CJZW</name>
+          <describe>采集指纹</describe>
+          <comment />
+          <type>0</type>
+          <length>30</length>
+          <scale>0</scale>
+          <control>16</control>
+          <primary-property>8</primary-property>
+          <option />
+          <meta-column />
+          <ref-object />
+          <default />
+          <real-type>0</real-type>
+          <attribute>0</attribute>
+          <order-direction>0</order-direction>
+          <expression>&lt;%@ livebos language='javascript' %&gt;
+var str='';
+var zkonline='zkonline_'+new Date().getTime();
+str='&lt;OBJECT classid="clsid:A318A9AC-E75F-424C-9364-6B40A848FC6B" width=1 height=1  style="margin:-1px;" id="';
+str+=zkonline;
+str+='" &gt;&lt;/OBJECT&gt;';
+str+='&lt;script&gt;';
+str+='function regZWXX(){';
+str+=' var zkonline=document.getElementById("'+zkonline+'");';
+str+=' if(zkonline.CheckFinger===undefined||zkonline.CheckFinger===null){alert("请安装控件");}; ';
+str+=' zkonline.CheckFinger="0000001000";';
+str+=' if(zkonline.Register()){';
+str+=' document.forms["DATA_FORM"].elements["FINGERPRINT"].value=zkonline.RegisterTemplate;';
+str+='}else{';
+str+='  /*alert("采集失败，请重试！")*/; ';
+str+='}';
+str+='}';
+str+='&lt;/script&gt;';
+str+='&lt;input onclick="regZWXX()" type="button" value=" 采 集 " &gt;';
+str;</expression>
+          <invisible-expression />
+          <disable-expression />
+          <category />
+          <fire-event>0</fire-event>
+          <check-type>0</check-type>
+          <validation />
+          <constraint />
+          <scope-permissions />
+        </column>
+        <column>
+          <name>SYS_VALIDATA</name>
+          <describe>验证代码</describe>
+          <comment>支持临柜审核</comment>
+          <type>0</type>
+          <length>30</length>
+          <scale>0</scale>
+          <control>16</control>
+          <primary-property>8</primary-property>
+          <option />
+          <meta-column />
+          <ref-object />
+          <default />
+          <real-type>0</real-type>
+          <attribute>266240</attribute>
+          <order-direction>0</order-direction>
+          <expression>&lt;%@ livebos language='javascript' %&gt;
+var lgshbz=ABS_SQLVALUE("select lgshbz from tywshcs where ywshdm='80000'");
+if (lgshbz==1)
+{
+var scriptStr = '';
+	scriptStr += '&lt;script src="/plug-in/common/js/jquery-1.3.2.min.js"&gt;&lt;/script&gt;';
+	scriptStr += '&lt;script src="/plug-in/common/js/jq-plugins/jquery.bgiframe.min.js"&gt;&lt;/script&gt;';
+	scriptStr += '&lt;script src="/plug-in/common/js/jquery-ui-1.7.min.js"&gt;&lt;/script&gt;';
+	scriptStr += '&lt;script src="/plug-in/cif2/$apex_core.js"&gt;&lt;/script&gt;';
+	scriptStr += '&lt;script src="/plug-in/cif2/$jquery.cif.js"&gt;&lt;/script&gt;';
+	scriptStr += '&lt;script src="/plug-in/cif2/$cif2_core.js"&gt;&lt;/script&gt;';
+	    
+	scriptStr+="&lt;script&gt;jQuery(document).ready(function(){jQuery('#btn1').click(function(){try{return CIF2.partnerConfirm('80000');}catch(e){CIF2.handleJsError(e, '[LGSH]');return false;};});});&lt;/script&gt;";
+	
+scriptStr;
+}
+else "";</expression>
+          <invisible-expression />
+          <disable-expression />
+          <category />
+          <fire-event>0</fire-event>
+          <check-type>0</check-type>
+          <validation />
+          <constraint />
+          <scope-permissions />
+        </column>
+      </parameters>
+      <validator />
+      <functions>
+        <function name="tUserFingerPrint_M1_F1" type="0">
+          <describe>新增记录</describe>
+          <ref-object name="tUserFingerPrint">
+            <column name="USERID">
+              <expression>O_PARAMETER.USERID</expression>
+            </column>
+            <column name="FINGER">
+              <expression>O_PARAMETER.FINGER</expression>
+            </column>
+            <column name="FINGERPRINT">
+              <expression>O_PARAMETER.FINGERPRINT</expression>
+            </column>
+            <column name="CJRQ">
+              <expression>ABS_TODAY()</expression>
+            </column>
+            <column name="CJGY">
+              <expression>$Login.User</expression>
+            </column>
+          </ref-object>
+        </function>
+        <function name="tUserFingerPrint_M1_F2" type="3">
+          <describe>新增外部记录</describe>
+          <ref-object name="tFingerPrintLog">
+            <column name="RQ">
+              <expression>ABS_TODAY()</expression>
+            </column>
+            <column name="FSSJ">
+              <expression>ABS_SQLVALUE("select to_char(sysdate,'HH24:MI:SS') from dual",[])</expression>
+            </column>
+            <column name="CZLX">
+              <expression>1</expression>
+            </column>
+            <column name="USERID">
+              <expression>O_PARAMETER.USERID</expression>
+            </column>
+            <column name="FINGER">
+              <expression>O_PARAMETER.FINGER</expression>
+            </column>
+            <column name="FINGERPRINT">
+              <expression>O_PARAMETER.FINGERPRINT</expression>
+            </column>
+            <column name="CZGY">
+              <expression>$Login.User</expression>
+            </column>
+          </ref-object>
+          <expression />
+        </function>
+      </functions>
+      <properties />
+    </method>
+    <method name="tUserFingerPrint_M4" object-id="-5af316f2:12862515bcf:-7fff" version="V1.1" modify-date="2010.05.04 17:29:41" create-date="2010.05.04 17:29:41" creator="xpk" modifier="xpk">
+      <describe>采集指纹</describe>
+      <comment />
+      <attribute>268435464</attribute>
+      <restrictions />
+      <parameters>
+        <column>
+          <name>USERID</name>
+          <describe>柜员</describe>
+          <comment />
+          <type>6</type>
+          <length>22</length>
+          <scale>0</scale>
+          <control>10</control>
+          <primary-property>4</primary-property>
+          <option />
+          <meta-column />
+          <ref-object>tUser</ref-object>
+          <default />
+          <real-type>6</real-type>
+          <attribute>0</attribute>
+          <order-direction>0</order-direction>
+          <expression />
+          <invisible-expression />
+          <disable-expression />
+          <category />
+          <fire-event>1</fire-event>
+          <check-type>0</check-type>
+          <validation />
+          <constraint />
+          <scope-permissions />
+        </column>
+        <column>
+          <name>FINGER</name>
+          <describe>采集手指</describe>
+          <comment />
+          <type>8</type>
+          <length>0</length>
+          <scale>0</scale>
+          <control>5</control>
+          <primary-property>4</primary-property>
+          <option />
+          <meta-column />
+          <ref-object>tFingerDefine</ref-object>
+          <default />
+          <real-type>6</real-type>
+          <attribute>8</attribute>
+          <order-direction>1</order-direction>
+          <expression />
+          <invisible-expression />
+          <disable-expression />
+          <category />
+          <fire-event>1</fire-event>
+          <check-type>0</check-type>
+          <validation />
+          <constraint type="3">
+            <SQL>["1=1 /*平台BUG，无效？tFingerDefine.ID not in( \r\nselect f.Finger from tuserfingerprint f\r\n  where f.userid={0}\r\n)*/",[{"type":"1","length":"","scale":"","expression":"USERID"}]]</SQL>
+            <refColumns>
+              <refColumn>USERID</refColumn>
+            </refColumns>
+          </constraint>
+          <scope-permissions />
+        </column>
+        <column>
+          <name>FINGERPRINT</name>
+          <describe>指纹数据</describe>
+          <comment />
+          <type>8</type>
+          <length>1024</length>
+          <scale>0</scale>
+          <control>0</control>
+          <primary-property>4</primary-property>
+          <option />
+          <meta-column />
+          <ref-object />
+          <default />
+          <real-type>0</real-type>
+          <attribute>65536</attribute>
+          <order-direction>0</order-direction>
+          <expression />
+          <invisible-expression />
+          <disable-expression />
+          <category />
+          <fire-event>0</fire-event>
+          <check-type>0</check-type>
+          <validation>
+            <validator name="required">
+              <expression />
+              <message>请采集指纹</message>
+              <attribute>0</attribute>
+            </validator>
+          </validation>
+          <constraint />
+          <scope-permissions />
+        </column>
+        <column>
+          <name>XXTS</name>
+          <describe>信息提示</describe>
+          <comment />
+          <type>0</type>
+          <length>30</length>
+          <scale>0</scale>
+          <control>16</control>
+          <primary-property>8</primary-property>
+          <option />
+          <meta-column />
+          <ref-object />
+          <default />
+          <real-type>0</real-type>
+          <attribute>0</attribute>
+          <order-direction>0</order-direction>
+          <expression>&lt;%@ livebos language='javascript' %&gt;
+var str='';
+var ret=0;
+if(FINGER&gt;0){
+  ret=ABS_SQLVALUE('select count(*) from tuserfingerprint f  where f.finger=? and  f.userid=? ',[FINGER,USERID]);
+  if(ret!=0){
+    str='&lt;b style="color:red"&gt;此手指已经录入，请更换手指标识。&lt;/b&gt;';
+   } 
+}
+if(FINGER&lt;1){
+  str='&lt;b style="color:red"&gt;请选择手指标识!&lt;/b&gt;';
+}else if(ret==0){
+var zkonline='zkonline_'+new Date().getTime();
+var noteId='zk_note_'+new Date().getTime();
+str='&lt;OBJECT classid="CLSID:CA69969C-2F27-41D3-954D-A48B941C3BA7" width=1 height=1  style="margin:-1px;" id="';
+str+=zkonline;
+str+='" &gt;&lt;/OBJECT&gt;';
+str+='\n&lt;script for="'+zkonline+'"   language="jscript"  event="OnEnroll(ActionResult, ATemplate)"&gt;';
+str+='\nvar InfoEl=document.getElementById("'+noteId+'");';
+str+='\nvar zkonline=document.getElementById("'+zkonline+'");';
+str+='\nif(!ActionResult){';
+str+='\n nInfoEl.innerHTML=("&lt;b style=\'color:red\'&gt;采集失败，请重新把手指放到指纹识别仪上!&lt;/b&gt;");';
+str+='\n}else{';
+str+='\nInfoEl.innerHTML=("&lt;b style=\'color:green\'&gt;采集完成!&lt;/b&gt;");';
+str+='\n document.forms["DATA_FORM"].elements["FINGERPRINT"].value=zkonline.EncodeTemplate1(ATemplate);';
+str+='\nwindow.AImageValid_Times=0;}';
+str+='\nzkonline.CancelEnroll();remove_'+zkonline+'();';
+str+='\n&lt;\/script&gt;';
+str+='\n&lt;script for="'+zkonline+'"   language="jscript"  event="OnImageReceived( AImageValid )"&gt;';
+
+str+='\nvar nInfoEl=document.getElementById("'+noteId+'");';
+str+='\nwindow.AImageValid_Times=(window.AImageValid_Times||0);';
+str+='\nif(AImageValid){';
+str+='\nwindow.AImageValid_Times++;nInfoEl.innerHTML="&lt;b style=\'color:green\'&gt;还剩："+(3-window.AImageValid_Times)+"次&lt;/b&gt;";';
+str+='\n}else{';
+str+='\n nInfoEl.innerHTML="&lt;b style=\'color:red\'&gt;此次采集无效，请重按!&lt;/b&gt;";';
+str+='\n}';
+str+='\n&lt;\/script&gt;';
+str+='\n&lt;script type="text/javascript"&gt;';
+str+='\nwindow.attachEvent("onload",reset_'+zkonline+');';
+str+='\nfunction remove_'+zkonline+'(){';
+str+='\nvar zkonline=document.getElementById("'+zkonline+'");';
+str+='\ndocument.getElementById("'+noteId+'").removeAttribute("inited");';
+str+='\nzkonline.CancelEnroll();/*zkonline.EndEngine();*/';
+str+='\n}';
+str+='\nfunction reset_'+zkonline+'(){';
+str+='\nwindow.AImageValid_Times=0;';
+str+='\nvar msgInfo={"CODE0":"初始化成功","CODE1":"指纹识别驱动程序加载失败","CODE2":"没有连接指纹识别仪","CODE3":"属性SensorIndex指定的指纹仪不存在"};';
+str+='\nvar nInfoEl=document.getElementById("'+noteId+'");';
+str+='\nvar zkonline=document.getElementById("'+zkonline+'");';
+str+='\nif(nInfoEl.getAttribute("inited")){';
+str+='\nzkonline.CancelEnroll();zkonline.EndEngine();';
+str+='\n};nInfoEl.removeAttribute("inited");';
+str+='\nif(zkonline.SensorIndex===undefined||zkonline.SensorIndex===null){ nInfoEl.innerHTML=("&lt;b style=\'color:red\'&gt;请安装指纹识别仪控件&lt;/b&gt;");return; false;}; ';
+str+='\n var code=parseInt(zkonline.InitEngine());';
+str+='\n if(code!=0){';
+str+='\n nInfoEl.innerHTML="&lt;b style=\'color:red\'&gt;"+(msgInfo["CODE"+code]||"出错，请重试！")+"&lt;/b&gt;";';
+str+='\nremove_'+zkonline+'();';
+str+='\n}else{';
+str+='\n  zkonline.BeginEnroll();nInfoEl.innerHTML="请按纹识别仪。";nInfoEl.setAttribute("inited",true);';
+str+='\n}';
+str+='\nreturn; false;}&lt;\/script&gt;';
+str+='\n&lt;span id="'+noteId+'"&gt;&lt;/span&gt; &lt;a href="#" class="Link" onclick="document.getElementById(\''+noteId+'\').innerHTML=\'重置中...\';setTimeout(reset_'+zkonline+',100);"&gt;重置&lt;/a&gt;';
+}
+str;</expression>
+          <invisible-expression />
+          <disable-expression />
+          <category />
+          <fire-event>0</fire-event>
+          <check-type>0</check-type>
+          <validation />
+          <constraint />
+          <scope-permissions />
+        </column>
+        <column>
+          <name>SYS_VALIDATA</name>
+          <describe>验证代码</describe>
+          <comment>支持临柜审核</comment>
+          <type>0</type>
+          <length>30</length>
+          <scale>0</scale>
+          <control>16</control>
+          <primary-property>8</primary-property>
+          <option />
+          <meta-column />
+          <ref-object />
+          <default />
+          <real-type>0</real-type>
+          <attribute>266240</attribute>
+          <order-direction>0</order-direction>
+          <expression>&lt;%@ livebos language='javascript' %&gt;
+var lgshbz=ABS_SQLVALUE("select lgshbz from tywshcs where ywshdm='80000'");
+if (lgshbz==1)
+{
+var scriptStr = '';
+	scriptStr += '&lt;script src="/plug-in/common/js/jquery-1.3.2.min.js"&gt;&lt;/script&gt;';
+	scriptStr += '&lt;script src="/plug-in/common/js/jq-plugins/jquery.bgiframe.min.js"&gt;&lt;/script&gt;';
+	scriptStr += '&lt;script src="/plug-in/common/js/jquery-ui-1.7.min.js"&gt;&lt;/script&gt;';
+	scriptStr += '&lt;script src="/plug-in/cif2/$apex_core.js"&gt;&lt;/script&gt;';
+	scriptStr += '&lt;script src="/plug-in/cif2/$jquery.cif.js"&gt;&lt;/script&gt;';
+	scriptStr += '&lt;script src="/plug-in/cif2/$cif2_core.js"&gt;&lt;/script&gt;';
+	    
+	scriptStr+="&lt;script&gt;jQuery(document).ready(function(){jQuery('#btn1').click(function(){try{return CIF2.partnerConfirm('80000');}catch(e){CIF2.handleJsError(e, '[LGSH]');return false;};});});&lt;/script&gt;";
+	
+scriptStr;
+}
+else "";</expression>
+          <invisible-expression />
+          <disable-expression />
+          <category />
+          <fire-event>0</fire-event>
+          <check-type>0</check-type>
+          <validation />
+          <constraint />
+          <scope-permissions />
+        </column>
+      </parameters>
+      <validator />
+      <functions>
+        <function name="tUserFingerPrint_M4_F3" type="8">
+          <describe>执行表达式</describe>
+          <expression>&lt;%@ livebos language='javascript' %&gt;
+var ret=ABS_SQLVALUE('select count(*) from tuserfingerprint f  where f.finger=? and  f.userid=? ',[O_PARAMETER.FINGER,O_PARAMETER.USERID]);
+if(ret!=0){
+  ABS_SETRETNOTE("此手指已经录入，请更换手指。");
+}
+ret==0;</expression>
+        </function>
+        <function name="tUserFingerPrint_M4_F1" type="0">
+          <describe>新增记录</describe>
+          <ref-object name="tUserFingerPrint">
+            <column name="USERID">
+              <expression>O_PARAMETER.USERID</expression>
+            </column>
+            <column name="FINGER">
+              <expression>O_PARAMETER.FINGER</expression>
+            </column>
+            <column name="FINGERPRINT">
+              <expression>O_PARAMETER.FINGERPRINT</expression>
+            </column>
+            <column name="CJRQ">
+              <expression>$DateTime.Now</expression>
+            </column>
+            <column name="CJGY">
+              <expression>$Login.User</expression>
+            </column>
+          </ref-object>
+        </function>
+        <function name="tUserFingerPrint_M4_F2" type="3">
+          <describe>新增外部记录</describe>
+          <ref-object name="tFingerPrintLog">
+            <column name="RQ">
+              <expression>$DateTime.Today</expression>
+            </column>
+            <column name="FSSJ">
+              <expression>ABS_SQLVALUE("select to_char(sysdate,'HH24:MI:SS') from dual",[])</expression>
+            </column>
+            <column name="CZLX">
+              <expression>1</expression>
+            </column>
+            <column name="USERID">
+              <expression>O_PARAMETER.USERID</expression>
+            </column>
+            <column name="FINGER">
+              <expression>O_MASTER.FINGER</expression>
+            </column>
+            <column name="FINGERPRINT">
+              <expression>O_PARAMETER.FINGERPRINT</expression>
+            </column>
+            <column name="CZGY">
+              <expression>$Login.User</expression>
+            </column>
+          </ref-object>
+          <expression />
+        </function>
+      </functions>
+      <properties>
+        <property>
+          <name>65</name>
+          <value>false</value>
+        </property>
+      </properties>
+    </method>
+    <method name="tUserFingerPrint_M2" object-id="4055207:1283ef300f4:-7ffd" version="V1.1" modify-date="2010.04.27 19:45:28" create-date="2010.04.27 19:45:28" creator="林金强" modifier="林金强">
+      <describe>删除指纹</describe>
+      <comment />
+      <attribute>268435472</attribute>
+      <restrictions />
+      <parameters>
+        <column>
+          <name>USERID</name>
+          <describe>柜员</describe>
+          <comment />
+          <type>8</type>
+          <length>22</length>
+          <scale>0</scale>
+          <control>10</control>
+          <primary-property>5</primary-property>
+          <option />
+          <meta-column />
+          <ref-object>tUser</ref-object>
+          <default />
+          <real-type>6</real-type>
+          <attribute>4</attribute>
+          <order-direction>1</order-direction>
+          <expression />
+          <invisible-expression />
+          <disable-expression />
+          <category />
+          <fire-event>0</fire-event>
+          <check-type>0</check-type>
+          <validation />
+          <constraint />
+          <scope-permissions />
+        </column>
+        <column>
+          <name>FINGER</name>
+          <describe>手指标识</describe>
+          <comment />
+          <type>8</type>
+          <length>0</length>
+          <scale>0</scale>
+          <control>2</control>
+          <primary-property>5</primary-property>
+          <option>$D{SZBS}</option>
+          <meta-column />
+          <ref-object />
+          <default />
+          <real-type>7</real-type>
+          <attribute>8</attribute>
+          <order-direction>1</order-direction>
+          <expression />
+          <invisible-expression />
+          <disable-expression />
+          <category />
+          <fire-event>0</fire-event>
+          <check-type>0</check-type>
+          <validation />
+          <constraint />
+          <scope-permissions />
+        </column>
+        <column>
+          <name>CJRQ</name>
+          <describe>采集日期</describe>
+          <comment />
+          <type>8</type>
+          <length>8</length>
+          <scale>0</scale>
+          <control>3</control>
+          <primary-property>5</primary-property>
+          <option />
+          <meta-column />
+          <ref-object />
+          <default />
+          <real-type>13</real-type>
+          <attribute>0</attribute>
+          <order-direction>0</order-direction>
+          <expression />
+          <invisible-expression />
+          <disable-expression />
+          <category />
+          <fire-event>0</fire-event>
+          <check-type>0</check-type>
+          <validation />
+          <constraint />
+          <scope-permissions />
+        </column>
+        <column>
+          <name>CJGY</name>
+          <describe>采集柜员</describe>
+          <comment />
+          <type>8</type>
+          <length>0</length>
+          <scale>0</scale>
+          <control>10</control>
+          <primary-property>5</primary-property>
+          <option />
+          <meta-column />
+          <ref-object>tUser</ref-object>
+          <default />
+          <real-type>6</real-type>
+          <attribute>0</attribute>
+          <order-direction>0</order-direction>
+          <expression />
+          <invisible-expression />
+          <disable-expression />
+          <category />
+          <fire-event>0</fire-event>
+          <check-type>0</check-type>
+          <validation />
+          <constraint />
+          <scope-permissions />
+        </column>
+        <column>
+          <name>SYS_VALIDATA</name>
+          <describe>验证代码</describe>
+          <comment>支持临柜审核</comment>
+          <type>0</type>
+          <length>30</length>
+          <scale>0</scale>
+          <control>16</control>
+          <primary-property>8</primary-property>
+          <option />
+          <meta-column />
+          <ref-object />
+          <default />
+          <real-type>0</real-type>
+          <attribute>266240</attribute>
+          <order-direction>0</order-direction>
+          <expression>&lt;%@ livebos language='javascript' %&gt;
+var lgshbz=ABS_SQLVALUE("select lgshbz from tywshcs where ywshdm='80000'");
+if (lgshbz==1)
+{
+var scriptStr = '';
+	scriptStr += '&lt;script src="/plug-in/common/js/jquery-1.3.2.min.js"&gt;&lt;/script&gt;';
+	scriptStr += '&lt;script src="/plug-in/common/js/jq-plugins/jquery.bgiframe.min.js"&gt;&lt;/script&gt;';
+	scriptStr += '&lt;script src="/plug-in/common/js/jquery-ui-1.7.min.js"&gt;&lt;/script&gt;';
+	scriptStr += '&lt;script src="/plug-in/cif2/$apex_core.js"&gt;&lt;/script&gt;';
+	scriptStr += '&lt;script src="/plug-in/cif2/$jquery.cif.js"&gt;&lt;/script&gt;';
+	scriptStr += '&lt;script src="/plug-in/cif2/$cif2_core.js"&gt;&lt;/script&gt;';
+	    
+	scriptStr+="&lt;script&gt;jQuery(document).ready(function(){jQuery('#btn1').click(function(){try{return CIF2.partnerConfirm('80000');}catch(e){CIF2.handleJsError(e, '[LGSH]');return false;};});});&lt;/script&gt;";
+	
+scriptStr;
+}
+else "";</expression>
+          <invisible-expression />
+          <disable-expression />
+          <category />
+          <fire-event>0</fire-event>
+          <check-type>0</check-type>
+          <validation />
+          <constraint />
+          <scope-permissions />
+        </column>
+      </parameters>
+      <validator />
+      <functions>
+        <function name="tUserFingerPrint_M2_F2" type="3">
+          <describe>新增外部记录</describe>
+          <ref-object name="tFingerPrintLog">
+            <column name="RQ">
+              <expression>ABS_TODAY()</expression>
+            </column>
+            <column name="FSSJ">
+              <expression>ABS_SQLVALUE("select to_char(sysdate,'HH24:MI:SS') from dual",[])</expression>
+            </column>
+            <column name="CZLX">
+              <expression>2</expression>
+            </column>
+            <column name="USERID">
+              <expression>O_MASTER.USERID</expression>
+            </column>
+            <column name="FINGER">
+              <expression>O_MASTER.FINGER</expression>
+            </column>
+            <column name="FINGERPRINT">
+              <expression>O_MASTER.FINGERPRINT</expression>
+            </column>
+            <column name="CZGY">
+              <expression>$Login.User</expression>
+            </column>
+          </ref-object>
+          <expression>["",[]]</expression>
+        </function>
+        <function name="tUserFingerPrint_M2_F1" type="2">
+          <describe>删除记录</describe>
+          <ref-object name="tUserFingerPrint" />
+        </function>
+      </functions>
+      <properties />
+    </method>
+    <method name="tUserFingerPrint_M3" object-id="-5af316f2:12862515bcf:-8000" version="V1.1" modify-date="2010.05.04 15:56:58" create-date="2010.05.04 15:56:58" creator="xpk" modifier="xpk">
+      <describe>比对测试</describe>
+      <comment />
+      <attribute>268435472</attribute>
+      <restrictions />
+      <parameters>
+        <column>
+          <name>YYB</name>
+          <describe>营业部</describe>
+          <comment />
+          <type>6</type>
+          <length>0</length>
+          <scale>0</scale>
+          <control>2</control>
+          <primary-property>4</primary-property>
+          <option />
+          <meta-column />
+          <ref-object>vYYB</ref-object>
+          <default>$Login.User.OrgID</default>
+          <real-type>0</real-type>
+          <attribute>0</attribute>
+          <order-direction>0</order-direction>
+          <expression />
+          <invisible-expression />
+          <disable-expression />
+          <category />
+          <fire-event>1</fire-event>
+          <check-type>0</check-type>
+          <validation />
+          <constraint />
+          <scope-permissions />
+        </column>
+        <column>
+          <name>FINGERPRINT</name>
+          <describe>指纹数据</describe>
+          <comment />
+          <type>8</type>
+          <length>1024</length>
+          <scale>0</scale>
+          <control>0</control>
+          <primary-property>4</primary-property>
+          <option />
+          <meta-column />
+          <ref-object />
+          <default />
+          <real-type>0</real-type>
+          <attribute>65536</attribute>
+          <order-direction>0</order-direction>
+          <expression />
+          <invisible-expression />
+          <disable-expression />
+          <category />
+          <fire-event>0</fire-event>
+          <check-type>0</check-type>
+          <validation />
+          <constraint />
+          <scope-permissions />
+        </column>
+        <column>
+          <name>USERID</name>
+          <describe>柜员</describe>
+          <comment />
+          <type>8</type>
+          <length>22</length>
+          <scale>0</scale>
+          <control>33</control>
+          <primary-property>4</primary-property>
+          <option />
+          <meta-column />
+          <ref-object>tUser</ref-object>
+          <default />
+          <real-type>6</real-type>
+          <attribute>4</attribute>
+          <order-direction>1</order-direction>
+          <expression />
+          <invisible-expression />
+          <disable-expression />
+          <category />
+          <fire-event>0</fire-event>
+          <check-type>0</check-type>
+          <validation />
+          <constraint>
+            <parameter-map type="0">
+              <ref-object>tUser</ref-object>
+              <ref-parameter>OrgID</ref-parameter>
+              <map-column>YYB</map-column>
+            </parameter-map>
+          </constraint>
+          <scope-permissions />
+        </column>
+        <column>
+          <name>FINGER</name>
+          <describe>手指标识</describe>
+          <comment />
+          <type>8</type>
+          <length>0</length>
+          <scale>0</scale>
+          <control>5</control>
+          <primary-property>0</primary-property>
+          <option />
+          <meta-column />
+          <ref-object>tFingerDefine</ref-object>
+          <default />
+          <real-type>6</real-type>
+          <attribute>8</attribute>
+          <order-direction>1</order-direction>
+          <expression />
+          <invisible-expression />
+          <disable-expression />
+          <category />
+          <fire-event>0</fire-event>
+          <check-type>0</check-type>
+          <validation />
+          <constraint type="3">
+            <SQL>["1=1 /*平台BUG，无效？tFingerDefine.ID not in( \r\nselect f.Finger from tuserfingerprint f\r\n  where f.userid={0}\r\n)*/",[{"type":"1","length":"","scale":"","expression":"USERID"}]]</SQL>
+            <refColumns>
+              <refColumn>USERID</refColumn>
+            </refColumns>
+          </constraint>
+          <scope-permissions />
+        </column>
+        <column>
+          <name>CJRQ</name>
+          <describe>采集日期</describe>
+          <comment />
+          <type>8</type>
+          <length>8</length>
+          <scale>0</scale>
+          <control>3</control>
+          <primary-property>5</primary-property>
+          <option />
+          <meta-column />
+          <ref-object />
+          <default />
+          <real-type>13</real-type>
+          <attribute>0</attribute>
+          <order-direction>0</order-direction>
+          <expression />
+          <invisible-expression />
+          <disable-expression />
+          <category />
+          <fire-event>0</fire-event>
+          <check-type>0</check-type>
+          <validation />
+          <constraint />
+          <scope-permissions />
+        </column>
+        <column>
+          <name>CJGY</name>
+          <describe>采集柜员</describe>
+          <comment />
+          <type>8</type>
+          <length>0</length>
+          <scale>0</scale>
+          <control>33</control>
+          <primary-property>5</primary-property>
+          <option />
+          <meta-column />
+          <ref-object>tUser</ref-object>
+          <default />
+          <real-type>6</real-type>
+          <attribute>0</attribute>
+          <order-direction>0</order-direction>
+          <expression />
+          <invisible-expression />
+          <disable-expression />
+          <category />
+          <fire-event>0</fire-event>
+          <check-type>0</check-type>
+          <validation />
+          <constraint />
+          <scope-permissions />
+        </column>
+        <column>
+          <name>VerifyTemplate</name>
+          <describe>VerifyTemplate</describe>
+          <comment />
+          <type>0</type>
+          <length>1024</length>
+          <scale>0</scale>
+          <control>0</control>
+          <primary-property>0</primary-property>
+          <option />
+          <meta-column />
+          <ref-object />
+          <default />
+          <real-type>0</real-type>
+          <attribute>65536</attribute>
+          <order-direction>0</order-direction>
+          <expression />
+          <invisible-expression />
+          <disable-expression />
+          <category />
+          <fire-event>0</fire-event>
+          <check-type>0</check-type>
+          <validation />
+          <constraint />
+          <scope-permissions />
+        </column>
+        <column>
+          <name>BD</name>
+          <describe>比对</describe>
+          <comment />
+          <type>0</type>
+          <length>30</length>
+          <scale>0</scale>
+          <control>16</control>
+          <primary-property>8</primary-property>
+          <option />
+          <meta-column />
+          <ref-object />
+          <default />
+          <real-type>0</real-type>
+          <attribute>0</attribute>
+          <order-direction>0</order-direction>
+          <expression>&lt;%@ livebos language='javascript' %&gt;
+var str='';
+var zkonline='zkonline_'+new Date().getTime();
+str='&lt;OBJECT classid="clsid:A318A9AC-E75F-424C-9364-6B40A848FC6B" width=1 height=1  style="margin:-1px;" id="';
+str+=zkonline;
+str+='" &gt;&lt;/OBJECT&gt;';
+str+='&lt;script&gt;';
+str+='function regZWBD(){';
+str+=' var zkonline=document.getElementById("'+zkonline+'");';
+str+=' if(zkonline.GetVerTemplate()){';
+str+='var vt=document.forms["DATA_FORM"].elements["VerifyTemplate"].value=zkonline.VerifyTemplate;';
+str+='var rt=zkonline.RegisterTemplate=document.forms["DATA_FORM"].elements["FINGERPRINT"].value; ';
+str+='if(zkonline.MatchFinger(rt,vt)){alert("验证通过");}else{alert("验证失败请重试!");}; ';
+str+='}else{';
+str+='   alert("采集失败，请重试！") ; ';
+str+='}';
+str+='}';
+str+='&lt;/script&gt;';
+str+='&lt;input onclick="regZWBD()" type="button" value=" 比对 " &gt;';
+str;</expression>
+          <invisible-expression />
+          <disable-expression />
+          <category />
+          <fire-event>0</fire-event>
+          <check-type>0</check-type>
+          <validation />
+          <constraint />
+          <scope-permissions />
+        </column>
+      </parameters>
+      <validator />
+      <functions />
+      <properties />
+    </method>
+  </methods>
+  <properties>
+    <property>
+      <name>112</name>
+      <value>false</value>
+    </property>
+    <property>
+      <name>113</name>
+      <value>false</value>
+    </property>
+  </properties>
+</object>
+

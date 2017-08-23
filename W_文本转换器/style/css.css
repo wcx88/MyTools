@@ -1,0 +1,76 @@
+.formtable {
+    border-collapse: collapse;
+    background: #fff;
+    border: 1px solid #A9D2E6;
+    width: 100%;
+}
+
+.formtable td, .formtable th {
+    text-align: center;
+    border: 1px solid #A9D2E6;
+    font-size: 12px;
+    white-space: nowrap;
+    word-spacing: normal;
+    overflow: visible;
+}
+.formtable th {
+    padding: 3px 8px 3px 3px;
+    background-color: #F8F8F8;
+}
+
+.formtable span {
+    font-size: 12px;
+}
+
+.formtable textarea {
+    overflow-x:scroll;
+    overflow-y:scroll;
+    height:510px;
+    width:100%;
+    word-wrap:normal;
+}
+.popuDiv {
+    text-align: left;
+    border: 1px solid #A9D2E6;
+    position:absolute;
+    padding: 3px 3px 3px 3px;
+    display:none;
+    background-color:#ece9d8;
+    left:1035px;
+}
+.CloseSign span{
+    font-size:14px;
+    color: red;
+    padding: 0 5px 1px 5px;
+    background-color: #A9D2E6;
+    cursor:pointer;
+}
+.CloseSign span:hover {
+    background-color: #FFF;
+    font-size:16px;
+}
+
+.headerNav a {
+    display: inline-block;
+    width: 50px;
+    height: 20px;
+    border: 1px solid #A6D0E7;
+    text-align: center;
+    line-height: 20px;
+    text-decoration: none;
+    padding: 2px 4px 0 2px;
+    font-size:12px;
+    background-color:#ece9d8;
+    FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr=#FFFFFF, EndColorStr=#9CBCDA);
+    CURSOR: pointer;
+    COLOR: #333333;
+}
+.headerNav a:hover {
+    border: 1px solid #5d8ee6;
+    color:#000;
+    FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr=#ffffff, EndColorStr=#D7E7FA);
+    CURSOR: pointer;
+}
+.txtType {
+    text-align: left;
+}

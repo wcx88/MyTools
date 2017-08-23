@@ -1,0 +1,348 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<META content="text/html; charset=utf-8" http-equiv=Content-Type>
+<SCRIPT type=text/javascript>
+    function add_onload_function(fn) {
+        var oe = window.onload;
+        window.onload = function() {
+            if (oe) oe();
+            fn();
+        }
+    }
+    add_onload_function(function() {
+
+        var tabsize = get_var('tabsize');
+        if (tabsize) {
+            document.getElementById('tabsize').value = tabsize;
+        }
+
+
+        var c = document.forms[0].content;
+        c && c.setSelectionRange && c.setSelectionRange(0, 0);
+        c && c.focus && c.focus();
+    });
+
+    function starts_with(str, what) {
+        return str.substr(0, what.length) === what;
+    }
+
+    function trim_leading_comments(str) {
+        // very basic. doesn't support /* ... */
+        str = str.replace(/^(\s*\/\/[^\n]*\n)+/, '');
+        str = str.replace(/^\s+/, '');
+        return str;
+    }
+
+    function unpacker_filter(source) {
+
+        if (document.getElementById('detect-packers').checked) {
+
+            var stripped_source = trim_leading_comments(source);
+
+            //try {
+            if (starts_with(stripped_source.toLowerCase().replace(/ +/g, ''), 'eval(function(p,a,c,k')) {
+                eval('var unpacked_source = ' + stripped_source.substring(4) + ';')
+                return unpacker_filter(unpacked_source);
+            } else if (JavascriptObfuscator.detect(stripped_source)) {
+                var unpacked = JavascriptObfuscator.unpack(stripped_source);
+                if (unpacked !== stripped_source) { // avoid infinite loop if nothing done
+                    return unpacker_filter(unpacked);
+                }
+            }
+            //} catch (error) {
+            //source = '// jsbeautifier: unpacking failed\n'
+            //+ '// You may wish to send me a report to einar@jsbeautifier.org\n'
+            //+ source;
+            //}
+        }
+        return source;
+
+    }
+
+
+    function do_js_beautify() {
+        document.getElementById('beautify').disabled = true;
+        var js_source = document.getElementById('content').value.replace(/^\s+/, '');
+        var indent_size = document.getElementById('tabsize').value;
+        var indent_char = ' ';
+        var preserve_newlines = document.getElementById('preserve-newlines').checked;
+        var keep_array_indentation = document.getElementById('keep-array-indentation').checked;
+
+        if (indent_size == 1) {
+            indent_char = '\t';
+        }
+
+
+        if (js_source && js_source[0] === '<' && js_source.substring(0, 4) !== '<!--') {
+            document.getElementById('content').value = style_html(js_source, indent_size, indent_char, 80);
+        } else {
+            document.getElementById('content').value = js_beautify(unpacker_filter(js_source), {
+                indent_size: indent_size,
+                indent_char: indent_char,
+                preserve_newlines:preserve_newlines,
+                keep_array_indentation:keep_array_indentation,
+                space_after_anon_function:true});
+        }
+
+        document.getElementById('beautify').disabled = false;
+        return false;
+    }
+
+
+    function get_var(name) {
+        var res = new RegExp("[\\?&]" + name + "=([^&#]*)").exec(window.location.href);
+        return res ? res[1] : "";
+    }
+
+    function run_tests() {
+        var st = new SanityTest();
+        run_beautifier_tests(st);
+        JavascriptObfuscator.run_tests(st);
+        return st.results();
+    }
+
+</SCRIPT>
+
+<SCRIPT type=text/javascript src="script/sanitytest.js"></SCRIPT>
+
+<SCRIPT type=text/javascript src="script/beautify.js"></SCRIPT>
+
+<SCRIPT type=text/javascript src="script/beautify-tests.js"></SCRIPT>
+
+<SCRIPT type=text/javascript src="script/javascriptobfuscator_unpacker.js"></SCRIPT>
+
+<SCRIPT type=text/javascript src="script/HTML-Beautify.js"></SCRIPT>
+
+<STYLE type=text/css>* {
+    PADDING-BOTTOM: 0px;
+    MARGIN: 0px;
+    PADDING-LEFT: 0px;
+    PADDING-RIGHT: 0px;
+    PADDING-TOP: 0px
+}
+
+DIV#wrap {
+    PADDING-BOTTOM: 0px;
+    PADDING-LEFT: 15px;
+    PADDING-RIGHT: 15px;
+    PADDING-TOP: 0px
+}
+
+FORM {
+    MARGIN: 0px 0px 20px
+}
+
+TEXTAREA {
+    BORDER-BOTTOM: 0px;
+    BORDER-LEFT: 0px;
+    WIDTH: 100%;
+    HEIGHT: 420px;
+    BORDER-TOP: 0px;
+    BORDER-RIGHT: 0px
+}
+
+H1 {
+    BORDER-BOTTOM: #666 1px solid;
+    MARGIN: 10px 10px 15px;
+    FONT-FAMILY: "trebuchet ms", arial, sans-serif;
+    COLOR: #666;
+    FONT-SIZE: 28px;
+    FONT-WEIGHT: normal
+}
+
+A {
+    COLOR: #36d
+}
+
+SELECT {
+    WIDTH: 190px
+}
+
+BUTTON {
+    BORDER-BOTTOM: #999 1px solid;
+    BORDER-LEFT: #ccc 1px solid;
+    PADDING-BOTTOM: 3px;
+    BACKGROUND-COLOR: #eee;
+    MARGIN-TOP: 2px;
+    PADDING-LEFT: 5px;
+    WIDTH: 100%;
+    PADDING-RIGHT: 5px;
+    BORDER-TOP: #ccc 1px solid;
+    CURSOR: pointer;
+    BORDER-RIGHT: #999 1px solid;
+    PADDING-TOP: 3px
+}
+
+BODY {
+    FONT-FAMILY: "myriad web", verdana, arial, helvetica, sans-serif;
+    FONT-SIZE: 14px
+}
+
+LABEL {
+    FONT-FAMILY: "myriad web", verdana, arial, helvetica, sans-serif;
+    FONT-SIZE: 14px
+}
+
+BUTTON {
+    FONT-FAMILY: "myriad web", verdana, arial, helvetica, sans-serif;
+    FONT-SIZE: 14px
+}
+
+SELECT {
+    FONT-FAMILY: "myriad web", verdana, arial, helvetica, sans-serif;
+    FONT-SIZE: 14px
+}
+
+TEXTAREA {
+    FONT-FAMILY: terminus, consolas, "lucida console", "courier new", courier, monospace;
+    FONT-SIZE: 12px
+}
+
+PRE {
+    FONT-FAMILY: terminus, consolas, "lucida console", "courier new", courier, monospace;
+    FONT-SIZE: 12px
+}
+
+SPAN.code {
+    FONT-FAMILY: terminus, consolas, "lucida console", "courier new", courier, monospace;
+    FONT-SIZE: 12px
+}
+
+DIV#bottom {
+    COLOR: #333
+}
+
+A#signature {
+    POSITION: fixed;
+    WIDTH: 15px;
+    BOTTOM: 0px;
+    DISPLAY: block;
+    BACKGROUND: url(http://spicausis.lv/spic-sign-blog.png) no-repeat right bottom;
+    HEIGHT: 21px;
+    RIGHT: 0px
+}
+
+H2 {
+    MARGIN: 18px 0px 4px;
+    COLOR: #555;
+    FONT-SIZE: 14px
+}
+
+P {
+    LINE-HEIGHT: 150%;
+    FONT-SIZE: 14px
+}
+
+DIV#footer {
+    MARGIN: 20px 0px 0px;
+    FONT-SIZE: 12px;
+    BORDER-TOP: #ddd 1px solid;
+    PADDING-TOP: 16px
+}
+
+LABEL {
+    CURSOR: pointer
+}
+
+FIELDSET {
+    BORDER-BOTTOM: 0px;
+    BORDER-LEFT: 0px;
+    PADDING-BOTTOM: 0px;
+    PADDING-LEFT: 0px;
+    PADDING-RIGHT: 0px;
+    BORDER-TOP: 0px;
+    BORDER-RIGHT: 0px;
+    PADDING-TOP: 0px
+}
+
+FIELDSET#textarea DIV {
+    BORDER-BOTTOM: #ccc 1px solid;
+    BORDER-LEFT: #ccc 1px solid;
+    PADDING-BOTTOM: 3px;
+    PADDING-LEFT: 3px;
+    PADDING-RIGHT: 3px;
+    BORDER-TOP: #ccc 1px solid;
+    BORDER-RIGHT: #ccc 1px solid;
+    PADDING-TOP: 3px
+}
+
+FIELDSET#options {
+    WIDTH: 200px;
+    FLOAT: right;
+    MARGIN-LEFT: 10px
+}
+
+FIELDSET#options H2 {
+    MARGIN-TOP: 0px
+}
+
+FIELDSET UL {
+    LIST-STYLE-TYPE: none;
+    LIST-STYLE-IMAGE: none
+}
+
+FIELDSET LI {
+    MARGIN-BOTTOM: 6px
+}
+
+FIELDSET#textarea {
+    TEXT-ALIGN: right
+}
+
+PRE {
+    MARGIN: 10px 0px
+}
+</STYLE>
+</head>
+<body>
+<DIV id=wrap>
+    <H1>Javascript 代码整型器</H1>
+
+    <FORM method=post action=?>
+        <FIELDSET id=options>
+            <H2>Options</H2>
+            <UL>
+                <LI><SELECT id=tabsize name=tabsize>
+                    <OPTION value=1>缩进一个制表符</OPTION>
+                    <OPTION value=2>缩进2个空格</OPTION>
+                    <OPTION value=3>缩进3个空格</OPTION>
+                    <OPTION selected value=4>缩进4个空格</OPTION>
+                    <OPTION value=8>缩进8个空格</OPTION>
+                </SELECT></LI>
+                <LI><INPUT id=preserve-newlines CHECKED type=checkbox><LABEL for=preserve-newlines> 保留空格?</LABEL><BR>
+                </LI>
+                <LI><INPUT id=detect-packers CHECKED type=checkbox><LABEL for=detect-packers> 检测封包?</LABEL><BR></LI>
+                <LI><INPUT id=keep-array-indentation type=checkbox><LABEL for=keep-array-indentation> 保持数组缩格?</LABEL>
+                </LI>
+            </UL>
+        </FIELDSET>
+        <FIELDSET id=textarea>
+            <DIV><TEXTAREA id=content rows=30 cols=30 name=content>/* 请粘贴你的代码如下，然后按"开始整形"键。 */
+                if('this_is'==/an_example/){do_something();}else{var a=b?(c%d):e[f];}
+            </TEXTAREA></DIV>
+            <BUTTON id=beautify onclick="return do_js_beautify()" type=submit>开始整形</BUTTON>
+        </FIELDSET>
+    </FORM>
+    <DIV id=bottom>
+        <P>This Js beautifier will reformat and reindent any ugly javascript, unpack scripts packed by the popular <A
+                href="http://dean.edwards.name/packer/">Dean Edward's packer,</A> as well as deobfuscate scripts
+            processed by javascriptobfuscator.com.</P>
+
+        <DIV id=footer>
+            <P>Written by <A href="mailto:einar@jsbeautifier.org">Einar Lielmanis</A></P></DIV>
+    </DIV>
+</DIV>
+<SCRIPT type=text/javascript src="script/ga.js"></SCRIPT>
+
+<SCRIPT type=text/javascript>
+    if (window._gat) {
+        var tracker = _gat._getTracker("UA-7409939-1");
+        if (tracker && tracker._trackPageview) {
+            tracker._trackPageview();
+        }
+    }
+</SCRIPT>
+</body>
+</html>
