@@ -22,7 +22,7 @@ var CODER = {
          }
          return result;
      },
-    //  字符-> \uXXXX方式的转换
+    //  Unicode编码
     strToUxxxx: function(str) {
         var a = [];
         var i = 0;
@@ -31,7 +31,7 @@ var CODER = {
         }
         return ("\\u" + a.join("\\u"));
     },
-    // \uXXXX -> 字符 转换
+    // Unicode解码
     UxxxxToStr: function(str) {
         return unescape(str.replace(/\\/g, "%")).replace(/%u00d/ig, "\r").replace(/%u00a/ig, "\n");
     }
