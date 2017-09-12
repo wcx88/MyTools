@@ -9,10 +9,10 @@ for /f %%i in ('dir /a-d-s /b %pic_dir%') do (
 	if not "!str_date!" == "" (
 	if not "!str_ext!" == ".bat" (
 		set str_dir=!str_date:~0,10!
-		set str_dir=!str_dir:/=_!
+		set str_dir=!str_dir:/=!
 		
 		if "!str_ext!" == ".MOV" (
-			set str_dir=!str_dir!\ÊÓÆµ
+			set str_dir=!str_dir!\è§†é¢‘
 			)
 		if not exist !str_dir! (
 			md !str_dir!
@@ -27,5 +27,6 @@ for /f %%i in ('dir /a-d-s /b %pic_dir%') do (
 
 	)
 	)
+
 
 pause
