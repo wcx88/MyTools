@@ -11,16 +11,17 @@ Loop Files, *.*
     continue
 
   strDate = ""
-  FormatTime, strDate , A_LoopFileTimeModified, yyyyMMdd
+  strTemp = %A_LoopFileTimeModified% ; has bug, need copy A_LoopFileTimeModified
+  FormatTime, strDate , %strTemp%, yyyyMMdd
 
   strDir = %strDate%
 
   if A_LoopFileExt contains mov,avi,3gp,mp4
-    strDir = %strDir%\ÊÓÆµ
+    strDir = %strDir%\è§†é¢‘
 
   FileCreateDir, %strDir%
 
-  Progress, %A_index%, %A_LoopFileName%, ÒÆ¶¯ÎÄ¼şÖĞ..., ÒÆ¶¯ÎÄ¼ş½ø¶È
+  Progress, %A_index%, %A_LoopFileName%, ç§»åŠ¨æ–‡ä»¶ä¸­..., ç§»åŠ¨æ–‡ä»¶è¿›åº¦
 
   FileMove, %A_LoopFileName%, %strDir%
   errCnt += ErrorLevel
@@ -32,4 +33,4 @@ Progress, Off
 okCnt := cnt - errCnt
 
 
-MsgBox, "ÎÄ¼şºÏ¼Æ%cnt% ¸ö£¬ÆäÖĞ³É¹¦ÒÆ¶¯%okCnt% ¸ö, Ê§°Ü¸ö%errCnt% ¸ö"
+MsgBox, "æ–‡ä»¶åˆè®¡%cnt% ä¸ªï¼Œå…¶ä¸­æˆåŠŸç§»åŠ¨%okCnt% ä¸ª, å¤±è´¥ä¸ª%errCnt% ä¸ª"
